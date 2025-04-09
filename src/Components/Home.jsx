@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import NavBar from "./Common/NavBar";
 
 
 const dividerStyle = {
@@ -17,37 +18,40 @@ const dividerStyle = {
     border: '1px solid',
     borderColor: 'divider',
     backgroundColor: 'background.paper',
-  };
+};
+
+const dividerBoxStyle = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: 5,
+    width: '100%',
+}
+
 const Home = () => {
     return (
         <Box>
-            <AppBar position="static" sx={{ backgroundColor: 'black', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-                    NBA Forecast
-                </Typography>
-            </AppBar>
-            <Box>
-            <List sx={dividerStyle}>
-                <ListItem>
-                    <ListItemText primary="Full width variant below" />
-                </ListItem>
-                <Divider component="li" />
-                <ListItem>
-                    <ListItemText primary="Inset variant below" />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                    <ListItemText primary="Middle variant below" />
-                </ListItem>
-                <Divider variant="middle" component="li" />
-                <ListItem>
-                    <ListItemText primary="List item" />
-                </ListItem>
-            </List>
+            <NavBar />
+            <Box sx={dividerBoxStyle}>
+                <List sx={dividerStyle}>
+                    <ListItem>
+                        <ListItemText primary="Placeholder" />
+                    </ListItem>
+                    <Divider component="li" />
+                    <ListItem>
+                        <ListItemText primary="Placeholder" />
+                    </ListItem>
+                    <Divider component="li" />
+                    <ListItem>
+                        <ListItemText primary="Placeholder" />
+                    </ListItem>
+                    <Divider component="li" />
+                    <ListItem>
+                        <ListItemText primary="Placeholder" />
+                    </ListItem>
+                </List>
             </Box>
-
         </Box>
-
     );
 };
 
