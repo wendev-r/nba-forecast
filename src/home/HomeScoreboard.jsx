@@ -28,12 +28,42 @@ const dividerBoxStyle = {
     width: '100%',
 }
 
+const convertTime = (time) => {
+    var date = new Date(time);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
 const HomeScoreboard = () => {
+    const [scoreboardData, setScoreBoardData] = useState([]);
+    useEffect(() => {
+        fetch('/scoreboard').then(res => res.json()).then(data => {
+            setScoreBoardData(data.scoreboard)
+        });
+
+    }, [])
     return (
         <Box>
             <NavBar />
             <Box sx={dividerBoxStyle}>
-                <List sx={dividerStyle}>
+                {scoreboardData.length > 0 ?
+
+                    <List sx={dividerStyle}>
+                        {scoreboardData.map(scoreboard => (
+                            <ListItem key={scoreboard.gameCode}>
+                                <ListItemText
+                                    primary=
+                                    {scoreboard.away + " @ " + scoreboard.home}
+                                    secondary={scoreboard.awayScore + "-" + scoreboard.homeScore}
+                                />
+
+                                <Typography>{scoreboard.gameClock ? "Q" + scoreboard.period + " " + scoreboard.gameClock : convertTime(scoreboard.gameTime)}</Typography>
+                            </ListItem>
+                        ))}
+                        <Divider component="li" />
+
+                    </List> :
+                    <Typography variant="h6" sx={{ padding: 2 }}> No games today</Typography>}
+                {/* <List sx={dividerStyle}>
                     <ListItem>
                         <ListItemText primary="Placeholder" />
                     </ListItem>
@@ -49,7 +79,7 @@ const HomeScoreboard = () => {
                     <ListItem>
                         <ListItemText primary="Placeholder" />
                     </ListItem>
-                </List>
+                </List> */}
             </Box>
         </Box>
     );

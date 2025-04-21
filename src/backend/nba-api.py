@@ -38,3 +38,6 @@ def get_scoreboard():
         gameList.append(game)
 
     return jsonify({'scoreboard': gameList})
+
+if __name__ == '__main__':
+    app.run()
