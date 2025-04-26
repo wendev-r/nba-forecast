@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, Toolbar, IconButton, Tooltip } from "@mui/material";
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useNavigate } from "react-router-dom";
 
 
 const buttonBox = {
@@ -16,7 +17,16 @@ const buttonBox = {
 };
 
 
+
 const NavBar = () => {
+    let navigate = useNavigate();
+
+    const onHomeClick = () => {
+        navigate('/home');
+    }
+    const onStatsClick = () => {
+        navigate('/stats');
+    }
     return (
         <Box>
             <AppBar position="static" sx={{ backgroundColor: 'black', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -27,10 +37,10 @@ const NavBar = () => {
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', gap: 2 }}>
-                        <Button color="primary" >
+                        <Button color="primary" onClick={() => onHomeClick()}>
                             Home
                         </Button>
-                        <Button color="primary" >
+                        <Button color="primary"onClick={() => onStatsClick()} >
                             Stats
                         </Button>
                         <Button color="primary" >

@@ -57,7 +57,6 @@ const HomeScoreboard = () => {
     }, [])
     return (
         <Box>
-            <NavBar />
             <Box sx={dividerBoxStyle}>
                 {scoreboardData.length > 0 ? 
                     <List sx={dividerStyle}>
