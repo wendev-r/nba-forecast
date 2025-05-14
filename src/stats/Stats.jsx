@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext,useState, useEffect } from "react";
 import SearchBar from "../Components/Common/SearchBar";
 import { Box } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { StatCategoryContext } from '../contexts/StatCategoryContext';
 
 
 const dividerStyle = {
@@ -27,7 +28,7 @@ const dividerBoxStyle = {
 
 
 const Stats = () => {
-    const [statCategory, setStatCategory] = useState('');
+    const {statCategory, setStatCategory} = useContext(StatCategoryContext);
     const handleStatCategoryChange = (event) => {
         setStatCategory(event.target.value);
     };
