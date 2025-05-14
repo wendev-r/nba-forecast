@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -8,6 +9,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 
 export default function SearchBar() {
+    const [searchValue, setSearchValue] = useState("");
+    React.useEffect(() => {
+    }, [searchValue]);
+
     return (
         <Paper
             component="form"
@@ -17,8 +22,10 @@ export default function SearchBar() {
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search general' }}
+                onChange ={(e) => setSearchValue(e.target.value)}
+                value={searchValue}
             />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+            <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => console.log("Search clicked for: ", searchValue)}>
                 <SearchIcon />
             </IconButton>
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
