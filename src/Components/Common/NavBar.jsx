@@ -27,6 +27,9 @@ const NavBar = () => {
     const onStatsClick = () => {
         navigate('/stats');
     }
+    const onAboutClick = () => {
+        navigate('/about');
+    }
     return (
         <Box>
             <AppBar position="static" sx={{ backgroundColor: 'black', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -43,7 +46,7 @@ const NavBar = () => {
                         <Button color="primary"onClick={() => onStatsClick()} >
                             Stats
                         </Button>
-                        <Button color="primary" >
+                        <Button color="primary" onClick={() => onAboutClick() }>
                             About
                         </Button>
                     </Box>

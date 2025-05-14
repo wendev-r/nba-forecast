@@ -66,13 +66,11 @@ const HomeScoreboard = () => {
                                     primary=
                                     {scoreboard.away + " @ " + scoreboard.home}
                                     secondary={scoreboard.awayScore + "-" + scoreboard.homeScore}
-                                    
                                 />
                                 <Typography>{scoreboard.gameClock ? "Q" + scoreboard.period + " " + convertGameClock(scoreboard.gameClock) : scoreboard.period ==4 && (scoreboard.gameClock) == ""? "Final" : convertTime(scoreboard.gameTime)}</Typography>
                             </ListItem>
                         ))}
                         <Divider component="li" />
-
                     </List> :
                     <Typography variant="h6" sx={{ padding: 2 }}> No games today</Typography>}
             </Box>

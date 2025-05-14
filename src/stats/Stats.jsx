@@ -28,7 +28,6 @@ const dividerBoxStyle = {
 
 const Stats = () => {
     const [statCategory, setStatCategory] = useState('');
-
     const handleStatCategoryChange = (event) => {
         setStatCategory(event.target.value);
     };
