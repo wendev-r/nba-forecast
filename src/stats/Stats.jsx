@@ -42,7 +42,6 @@ const Stats = () => {
                         value={statCategory}
                         onChange={handleStatCategoryChange}
                         label="Stat Category"
-                        defaultValue=""
                     >
                         <MenuItem value={"Team"}>Team</MenuItem>
                         <MenuItem value={"Player"}>Player</MenuItem>

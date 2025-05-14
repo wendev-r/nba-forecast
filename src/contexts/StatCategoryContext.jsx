@@ -5,8 +5,7 @@ export const StatCategoryContext = createContext();
 
 // Create the provider component
 export const StatCategoryProvider = ({ children }) => {
-    const [statCategory, setStatCategory] = useState('');
-
+    const [statCategory, setStatCategory] = useState('Team');
     return (
         <StatCategoryContext.Provider value={{ statCategory, setStatCategory }}>
             {children}
