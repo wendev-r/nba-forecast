@@ -8,10 +8,20 @@ import json
 from flask import jsonify
 import pickle
 from flask import Flask
+from sqlalchemy import create_engine
+import os
 
-### This file contains the custom API endpoints for the data orginating from NBA API data.
+### This file contains the custom API endpoints for the data orginating from NBA API data and database.
 
 app = Flask(__name__)
+relative_path = "src/backend/db/NBA-Boxscore-Database.sqlite"
+
+# Convert to absolute path
+absolute_path = os.path.abspath(relative_path)
+print("absolute path: ", absolute_path)
+
+# Create the engine with absolute path
+engine = create_engine(f"sqlite:///{absolute_path}")
 
 
 def get_scoreboard_list():
@@ -38,6 +48,17 @@ def get_scoreboard():
         gameList.append(game)
 
     return jsonify({'scoreboard': gameList})
+
+@app.route('/team/<team_name>', methods=['GET'])
+def get_team_details(team_name):
+    result = {}
+    with engine.connect() as conn:
+        result = conn.execute("select * from team_stats")
+        print("testing ", result.fetchall())  # Print table nam
+    # test = pd.read_sql('select * from team_stats',engine)
+    return jsonify({'team_stats': result.to_dict(orient='records')})
+
+    
 
 if __name__ == '__main__':
     app.run()
