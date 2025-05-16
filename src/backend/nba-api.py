@@ -4,9 +4,7 @@ from nba_api.stats.endpoints import teamdetails
 from nba_api.stats.static import teams
 from nba_api.live.nba.endpoints import scoreboard
 from io import StringIO
-import json
 from flask import jsonify
-import pickle
 from flask import Flask
 from sqlalchemy import create_engine
 import os
@@ -14,14 +12,14 @@ import os
 ### This file contains the custom API endpoints for the data orginating from NBA API data and database.
 
 app = Flask(__name__)
-relative_path = "src/backend/db/NBA-Boxscore-Database.sqlite"
+relative_path = "NBA-Boxscore-Database.sqlite"
 
-# Convert to absolute path
-absolute_path = os.path.abspath(relative_path)
-print("absolute path: ", absolute_path)
+# # Convert to absolute path
+# absolute_path = os.path.abspath(relative_path)
+# print("absolute path: ", absolute_path)
 
 # Create the engine with absolute path
-engine = create_engine(f"sqlite:///{absolute_path}")
+engine = create_engine(f"sqlite:///{relative_path}")
 
 
 def get_scoreboard_list():
@@ -51,14 +49,14 @@ def get_scoreboard():
 
 @app.route('/team/<team_name>', methods=['GET'])
 def get_team_details(team_name):
-    result = {}
-    with engine.connect() as conn:
-        result = conn.execute("select * from team_stats")
-        print("testing ", result.fetchall())  # Print table nam
-    # test = pd.read_sql('select * from team_stats',engine)
-    return jsonify({'team_stats': result.to_dict(orient='records')})
+    # result = {}
+    # with engine.connect() as conn:
+    #     result = conn.execute("select * from team_stats")
+    #     print("testing ", result.fetchall())  # Print table nam
+    test = pd.read_sql('select * from team_stats where ',engine)
+    print("test:", test.head()) 
+    return jsonify({'team_stats': test.to_dict()})
 
-    
 
 if __name__ == '__main__':
     app.run()
